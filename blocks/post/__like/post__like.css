@@ -1,5 +1,5 @@
 .post__like{
-    background: url("/images/post_like.svg") no-repeat center;
+    background: url("../../../images/post_like.svg") no-repeat center;
     margin: 5px 5px 1px 0;
     width: 22px;
     height: 19px;

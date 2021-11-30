@@ -1,5 +1,5 @@
 .profile__subscribe-button{
-    background: url("/images/button_subscribe.svg") no-repeat center;
+    background: url("../../../images/button_subscribe.svg") no-repeat center;
     height: 50px;
     width: 150px;
     border: none;
@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 620px) {
     .profile__subscribe-button {
-        background: url("/images/button_subscribe_big.svg") no-repeat center;
+        background: url("../../../images/button_subscribe_big.svg") no-repeat center;
         width: 282px;
         margin: 36px 0 0;
     }
