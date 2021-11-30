@@ -1,0 +1,12 @@
+.popup__form-item {
+    width: 100%;
+    border: 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #bcbcc4;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.popup__form-item:last-child{
+    padding: 0 0 10px;
+}

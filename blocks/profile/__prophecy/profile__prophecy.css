@@ -1,0 +1,19 @@
+.profile__prophecy{
+    margin: 16px 0 0;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 900px) {
+    .profile__prophecy {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .profile__prophecy {
+        text-align: center;
+        font-size: 17px;
+    }
+}

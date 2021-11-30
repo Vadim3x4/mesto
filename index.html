@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="html, css">
+    <meta name="author" content="Vadim K">
+    <meta name="description" content="Проектная работа 4 спринта">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Проект: Mesto</title>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип: Место">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__info">
+                <img class="profile__avatar" src="./images/profile_avatar.jpg" alt="Аватар профиля">
+                <div class="profile__description">
+                    <div class="profile__data">
+                        <p class="profile__username">Жак-Ив Кусто</p>
+                        <button class="profile__button-edit"></button>
+                    </div>
+                    <p class="profile__prophecy">Исследователь океана</p>
+                </div>
+            </div>
+            <button class="profile__subscribe-button"></button>
+        </section>
+        <section class="posts">
+            <div class="post">
+                <img class="post__image" src="./images/place_karachaevsk.jpg" alt="">
+                <div class="post__description">
+                    <h3 class="post__title">Карачаевск</h3>
+                    <button class="post__like post__like_active"></button>
+                </div>
+            </div>
+            <div class="post">
+                <img class="post__image" src="./images/place_elbrus.jpg" alt="">
+                <div class="post__description">
+                    <h3 class="post__title">Гора эльбрус</h3>
+                    <button class="post__like post__like_active"></button>
+                </div>
+            </div>
+            <div class="post">
+                <img class="post__image" src="./images/place_dombay.jpg" alt="">
+                <div class="post__description">
+                    <h3 class="post__title">Домбай</h3>
+                    <button class="post__like"></button>
+                </div>
+            </div>
+            <div class="post">
+                <img class="post__image" src="./images/place_dombay_2.jpg" alt="">
+                <div class="post__description">
+                    <h3 class="post__title">Домбай</h3>
+                    <button class="post__like"></button>
+                </div>
+            </div>
+            <div class="post">
+                <img class="post__image" src="./images/place_elbrus_2.jpg" alt="">
+                <div class="post__description">
+                    <h3 class="post__title">Гора Эльбрус</h3>
+                    <button class="post__like"></button>
+                </div>
+            </div>
+            <div class="post">
+                <img class="post__image" src="./images/place_karachaevo_cherkesia.jpg" alt="">
+                <div class="post__description">
+                    <h3 class="post__title">Карачаево-Черкессия</h3>
+                    <button class="post__like"></button>
+                </div>
+            </div>
+        </section>
+        <section class="popup">
+            <div class="popup__container">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <button class="popup__close-button"></button>
+                <form class="popup__form">
+                    <label class="popup__form-label"><input type="text" class="popup__form-item popup__form-item-name"></label>
+                    <label class="popup__form-label"><input type="text" class="popup__form-item popup__form-item-prophecy"></label>
+                    <button class="popup__save-button"></button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

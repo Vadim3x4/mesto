@@ -1,0 +1,21 @@
+.popup__save-button{
+    margin: 48px 0 0;
+    width: 358px;
+    height: 50px;
+    background: url("/images/button_save.svg") center;
+    border: none;
+    cursor: pointer;
+}
+
+.popup__save-button:hover{
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 620px) {
+    .popup__save-button {
+        width: 238px;
+        height: 46px;
+        background: url("/images/button_save_small.svg") center;
+        margin: 45px auto 25px;
+    }
+}
