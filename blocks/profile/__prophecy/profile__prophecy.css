@@ -1,11 +1,12 @@
 .profile__prophecy{
     margin: 16px 0 0;
     font-size: 18px;
-    line-height: 1;
+    line-height: 22px;
     font-weight: 400;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 23vh;
 }
 
 @media screen and (max-width: 900px) {
@@ -17,6 +18,7 @@
 @media screen and (max-width: 620px) {
     .profile__prophecy {
         text-align: center;
-        font-size: 17px;
+        font-size: 14px;
+        line-height: 17px;
     }
 }
