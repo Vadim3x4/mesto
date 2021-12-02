@@ -4,8 +4,8 @@ const profileEditButton = content.querySelector('.profile__button-edit');
 const popupCloseButton = content.querySelector('.popup__close-button');
 
 const formElement = document.querySelector('.popup__form');
-const nameInput = document.querySelector('.popup__form-item-name');
-const prophecyInput = document.querySelector('.popup__form-item-prophecy');
+const nameInput = document.querySelector('.popup__form-item_type_name');
+const prophecyInput = document.querySelector('.popup__form-item_type_prophecy');
 const profileUsername = content.querySelector('.profile__username');
 const profileProphecy = content.querySelector('.profile__prophecy');
 

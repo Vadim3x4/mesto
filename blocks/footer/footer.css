@@ -1,5 +1,5 @@
 .footer{
-    margin: 66px auto 0;
+    margin: 66px auto 60px;
     color: rgba(84, 84, 84, 1);
     max-width: 880px;
 }
@@ -12,6 +12,8 @@
 
 @media screen and (max-width: 620px) {
     .footer {
+        margin-top: 48px;
         max-width: 281px;
+        margin-bottom: 36px;
     }
 }
