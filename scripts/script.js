@@ -16,7 +16,7 @@ const postTitleInput = document.querySelector('.popup__form-item_type_title');
 const profileUsername = content.querySelector('.profile__username');
 const profileProphecy = content.querySelector('.profile__prophecy');
 const postContainer = content.querySelector('.posts');
-const postImage = content.querySelector('.popup__image_view');
+const postImage = content.querySelector('.popup__image-view');
 
 const initialCards = [
     {
