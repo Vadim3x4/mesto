@@ -1,4 +1,4 @@
-.profile__subscribe-button{
+.profile__add-post-button{
     background: url("../../../images/button_subscribe.svg") no-repeat center;
     height: 50px;
     width: 150px;
@@ -7,12 +7,12 @@
     cursor:pointer;
 }
 
-.profile__subscribe-button:hover{
+.profile__add-post-button:hover{
     opacity: 0.6;
 }
 
 @media screen and (max-width: 620px) {
-    .profile__subscribe-button {
+    .profile__add-post-button {
         background: url("../../../images/button_subscribe_big.svg") no-repeat center;
         width: 282px;
         margin: 36px 0 0;

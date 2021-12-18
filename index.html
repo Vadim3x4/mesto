@@ -26,67 +26,58 @@
                     <p class="profile__prophecy">Исследователь океана</p>
                 </div>
             </div>
-            <button aria-label="Подпис" type="button" class="profile__subscribe-button"></button>
+            <button  aria-label="Добавить пост" type="button" class="profile__add-post-button"></button>
         </section>
-        <section class="posts">
-            <article class="post">
-                <img class="post__image" src="./images/place_karachaevsk.jpg" alt="Карачаевска">
-                <div class="post__description">
-                    <h2 class="post__title">Карачаевск</h2>
-                    <button aria-label="Нравится" type="button" class="post__like"></button>
-                </div>
-            </article>
-            <article class="post">
-                <img class="post__image" src="./images/place_elbrus.jpg" alt="Эльбрус">
-                <div class="post__description">
-                    <h2 class="post__title">Гора эльбрус</h2>
-                    <button aria-label="Нравится" type="button" class="post__like"></button>
-                </div>
-            </article>
-            <article class="post">
-                <img class="post__image" src="./images/place_dombay.jpg" alt="Горы Домбая">
-                <div class="post__description">
-                    <h2 class="post__title">Домбай</h2>
-                    <button aria-label="Нравится" type="button" class="post__like"></button>
-                </div>
-            </article>
-            <article class="post">
-                <img class="post__image" src="./images/place_dombay_2.jpg" alt="Горы Домбая">
-                <div class="post__description">
-                    <h2 class="post__title">Домбай</h2>
-                    <button aria-label="Нравится" type="button" class="post__like"></button>
-                </div>
-            </article>
-            <article class="post">
-                <img class="post__image" src="./images/place_elbrus_2.jpg" alt="Эльбрус">
-                <div class="post__description">
-                    <h2 class="post__title">Гора Эльбрус</h2>
-                    <button aria-label="Нравится" type="button" class="post__like"></button>
-                </div>
-            </article>
-            <article class="post">
-                <img class="post__image" src="./images/place_karachaevo_cherkesia.jpg" alt="Карачаево-Червкессия">
-                <div class="post__description">
-                    <h2 class="post__title">Карачаево-Черкессия</h2>
-                    <button aria-label="Нравится" type="button" class="post__like"></button>
-                </div>
-            </article>
-        </section>
-        <section class="popup">
+
+        <section class="posts"></section>
+
+        <div class="popup popup_type_edit-profile">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <button aria-label="Закрыть редактирование профиля" type="button" class="popup__close-button"></button>
-                <form class="popup__form" name="popup_form">
+                <button aria-label="Закрыть редактирование профиля" type="button" class="popup__close-button popup__close-button_type_edit"></button>
+                <form class="popup__form popup__form_type_edit" name="popup_form">
                     <input type="text" class="popup__form-item popup__form-item_type_name">
                     <input type="text" class="popup__form-item popup__form-item_type_prophecy">
                     <button aria-label="Принять редактирование профиля" type="submit" class="popup__save-button"></button>
                 </form>
             </div>
-        </section>
+        </div>
+
+        <div class="popup popup_type_add-post">
+            <div class="popup__container">
+                <h2 class="popup__title">Новое место</h2>
+                <button aria-label="Закрыть добавление карточки" type="button" class="popup__close-button popup__close-button_type_add"></button>
+                <form class="popup__form popup__form_type_add" name="popup_form">
+                    <input type="text" placeholder="Название" class="popup__form-item popup__form-item_type_title">
+                    <input type="text" placeholder="Ссылка на картинку" class="popup__form-item popup__form-item_type_link">
+                    <button aria-label="Сохранить карточку" type="submit" class="popup__save-button"></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup popup_type_image-view">
+            <div class="popup__container">
+                <button aria-label="Закрыть карточку" type="button" class="popup__close-button popup__close-button_type_view"></button>
+                <img class="popup__image_view" src="" alt="Описание изображения">
+            </div>
+        </div>
+
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
+
+    <template id="post-template">
+        <div class="post">
+            <button aria-label="Удалить пост" type="button" class="post__delete"></button>
+            <img class="post__image" alt="">
+            <div class="post__description">
+                <h2 class="post__title"></h2>
+                <button aria-label="Нравится" type="button" class="post__like"></button>
+            </div>
+        </div>
+    </template>
+
     <script src="scripts/script.js"></script>
 </body>
 
