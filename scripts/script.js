@@ -88,7 +88,7 @@ function createPost(postLink, postTitle) {
     const imageView =  postElement.querySelector('.post__image')
     postElement.querySelector('.post__image').src = postLink;
     postElement.querySelector('.post__title').textContent = postTitle;
-    postElement.querySelector('.post__title').alt = postTitle;
+    postElement.querySelector('.post__image').alt = postTitle;
     likeButton.addEventListener('click', (evt) => {
         likePost(evt.target.classList)
     })

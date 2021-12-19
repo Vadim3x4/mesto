@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--suppress ALL -->
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +9,6 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>Проект: Mesto</title>
 </head>
-
 <body class="page">
     <header class="header">
         <img class="header__logo" src="./images/logo.svg" alt="Логотип: Место">
@@ -29,9 +27,7 @@
             </div>
             <button  aria-label="Добавить пост" type="button" class="profile__add-post-button"></button>
         </section>
-
         <section class="posts"></section>
-
         <div class="popup popup_type_edit-profile">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
@@ -43,7 +39,6 @@
                 </form>
             </div>
         </div>
-
         <div class="popup popup_type_add-post">
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
@@ -55,7 +50,6 @@
                 </form>
             </div>
         </div>
-
         <div class="popup popup_type_image-view">
             <div class="popup__container popup__container_type_picture">
                 <button aria-label="Закрыть карточку" type="button" class="popup__close-button popup__close-button_type_view"></button>
@@ -63,12 +57,10 @@
                 <figcaption class="popup__image-title"></figcaption>
             </div>
         </div>
-
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-
     <template id="post-template">
         <div class="post">
             <button aria-label="Удалить пост" type="button" class="post__delete"></button>
@@ -79,7 +71,6 @@
             </div>
         </div>
     </template>
-
     <script src="scripts/script.js"></script>
 </body>
 
