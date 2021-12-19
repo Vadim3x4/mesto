@@ -16,7 +16,9 @@ const postTitleInput = document.querySelector('.popup__form-item_type_title');
 const profileUsername = content.querySelector('.profile__username');
 const profileProphecy = content.querySelector('.profile__prophecy');
 const postContainer = content.querySelector('.posts');
-const postImage = content.querySelector('.popup__image-view');
+const postTemplate = document.querySelector('#post-template').content;
+const popupImageView = document.querySelector('.popup__image-view')
+const popupImageTitle = document.querySelector('.popup__image-title')
 
 const initialCards = [
     {
@@ -45,27 +47,67 @@ const initialCards = [
     }
 ];
 
+/**
+ * Функция удаления поста
+ * @param post
+ */
+function deletePost(post){
+    post.remove()
+}
 
 /**
- * Функция для работы с создание/удалением/изменений состояния поста.
+ * Функция лайка поста
+ * @param post
+ */
+function likePost(post){
+    post.toggle('post__like_active')
+}
+
+/**
+ * Функция просмотра изображения, в отдельном поп-апе
+ * @param postLink
+ * @param postTitle
+ */
+function imageViewPopup(postLink, postTitle){
+    popupImageView.src = postLink;
+    popupImageView.alt = postTitle;
+    popupImageTitle.textContent = postTitle;
+    openPopup(popupImage);
+}
+
+/**
+ * Функция создания поста
+ * @param postLink
+ * @param postTitle
+ * @returns {Node}
+ */
+function createPost(postLink, postTitle) {
+    const postElement =  postTemplate.querySelector('.post').cloneNode(true);
+    const likeButton = postElement.querySelector('.post__like')
+    const deleteButton = postElement.querySelector('.post__delete')
+    const imageView =  postElement.querySelector('.post__image')
+    postElement.querySelector('.post__image').src = postLink;
+    postElement.querySelector('.post__title').textContent = postTitle;
+    postElement.querySelector('.post__title').alt = postTitle;
+    likeButton.addEventListener('click', (evt) => {
+        likePost(evt.target.classList)
+    })
+    deleteButton.addEventListener('click', () => {
+        deletePost(postElement)
+    })
+    imageView.addEventListener('click', () => {
+        imageViewPopup(postLink, postTitle)
+    });
+    return postElement
+}
+
+/**
+ * Функция добавления поста
  * @param postLink
  * @param postTitle
  */
 function addPost(postLink, postTitle) {
-    const postTemplate = document.querySelector('#post-template').content;
-    const postElement =  postTemplate.querySelector('.post').cloneNode(true);
-
-    postElement.querySelector('.post__image').src = postLink;
-    postElement.querySelector('.post__title').textContent = postTitle;
-    postElement.querySelector('.post__like').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('post__like_active');
-    });
-    postElement.querySelector('.post__delete').addEventListener('click', function () {
-        postElement.remove()
-    });
-    postElement.querySelector('.post__image').addEventListener('click', function (evt) {
-        openPopup(evt, postLink)
-    });
+    const postElement =  createPost(postLink, postTitle)
     postContainer.prepend(postElement);
 }
 
@@ -78,59 +120,64 @@ function renderPosts(){
     });
 }
 
-
 /**
  * Функция открытия поп-апа
+ *  * @param popup
  */
-function openPopup(evt, image_link='d') {
-    if (evt.target.className.includes('profile__button-edit')){
-        nameInput.value = profileUsername.textContent;
-        prophecyInput.value = profileProphecy.textContent;
-        popupEdit.classList.add('popup_opened');
-    } else if (evt.target.className.includes('profile__add-post-button')){
-        popupAdd.classList.add('popup_opened');
-    } else if(evt.target.className.includes('post__image')){
-        popupImage.classList.add('popup_opened');
-        postImage.src = image_link;
-    }
+function openPopup(popup){
+    popup.classList.add('popup_opened');
 }
 
 /**
  * Функция закрытия поп-апа
+ *  * @param popup
  */
-function closePopup() {
-    popupEdit.classList.remove('popup_opened');
-    popupAdd.classList.remove('popup_opened');
-    popupImage.classList.remove('popup_opened');
+function closePopup(popup) {
+    popup.classList.remove('popup_opened')
 }
 
 /**
- * Обработчик кнопки принятия формы
+ * Обработчик кнопки принятия формы редактирования профиля
  * @param evt
  */
-function formSubmitHandler (evt) {
+function handleProfileFormSubmit (evt) {
     evt.preventDefault();
-    if(evt.target.className.includes('popup__form_type_edit')){
-        profileUsername.textContent = nameInput.value;
-        profileProphecy.textContent = prophecyInput.value;
-        closePopup();
-    } else {
-        addPost(postLinkInput.value, postTitleInput.value);
-        postLinkInput.value = '' ;
-        postTitleInput.value = '' ;
-        closePopup();
-    }
-
+    profileUsername.textContent = nameInput.value;
+    profileProphecy.textContent = prophecyInput.value;
+    closePopup(popupEdit);
 }
 
+/**
+ * Обработчик кнопки создания нового поста
+ * @param evt
+ */
+function handleAddCard (evt) {
+    evt.preventDefault();
+    addPost(postLinkInput.value, postTitleInput.value);
+    postLinkInput.value = '' ;
+    postTitleInput.value = '' ;
+    closePopup(popupAdd);
+}
+
+profileEditButton.addEventListener('click', () => {
+    nameInput.value = profileUsername.textContent;
+    prophecyInput.value = profileProphecy.textContent;
+    openPopup(popupEdit)
+});
+addPostButton.addEventListener('click', () => {
+    openPopup(popupAdd)
+});
+popupCloseButtonEdit.addEventListener('click', ()=>{
+    closePopup(popupEdit)
+});
+popupCloseButtonAdd.addEventListener('click', ()=>{
+    closePopup(popupAdd)
+});
+popupCloseButtonImageView.addEventListener('click', ()=>{
+    closePopup(popupImage)
+});
+
+
+formElementEdit.addEventListener('submit', handleProfileFormSubmit);
+formElementAdd.addEventListener('submit', handleAddCard);
 renderPosts()
-profileEditButton.addEventListener('click', openPopup);
-addPostButton.addEventListener('click', openPopup);
-
-popupCloseButtonEdit.addEventListener('click', closePopup);
-popupCloseButtonAdd.addEventListener('click', closePopup);
-popupCloseButtonImageView.addEventListener('click', closePopup);
-
-formElementEdit.addEventListener('submit', formSubmitHandler);
-formElementAdd.addEventListener('submit', formSubmitHandler);
-

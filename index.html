@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -36,8 +37,8 @@
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <button aria-label="Закрыть редактирование профиля" type="button" class="popup__close-button popup__close-button_type_edit"></button>
                 <form class="popup__form popup__form_type_edit" name="popup_form">
-                    <input type="text" class="popup__form-item popup__form-item_type_name">
-                    <input type="text" class="popup__form-item popup__form-item_type_prophecy">
+                    <input required type="text" class="popup__form-item popup__form-item_type_name">
+                    <input required type="text" class="popup__form-item popup__form-item_type_prophecy">
                     <button aria-label="Принять редактирование профиля" type="submit" class="popup__save-button"></button>
                 </form>
             </div>
@@ -48,17 +49,18 @@
                 <h2 class="popup__title">Новое место</h2>
                 <button aria-label="Закрыть добавление карточки" type="button" class="popup__close-button popup__close-button_type_add"></button>
                 <form class="popup__form popup__form_type_add" name="popup_form">
-                    <input type="text" placeholder="Название" class="popup__form-item popup__form-item_type_title">
-                    <input type="text" placeholder="Ссылка на картинку" class="popup__form-item popup__form-item_type_link">
+                    <input required type="text" placeholder="Название" class="popup__form-item popup__form-item_type_title">
+                    <input required type="text" placeholder="Ссылка на картинку" class="popup__form-item popup__form-item_type_link">
                     <button aria-label="Сохранить карточку" type="submit" class="popup__save-button"></button>
                 </form>
             </div>
         </div>
 
         <div class="popup popup_type_image-view">
-            <div class="popup__container">
+            <div class="popup__container popup__container_type_picture">
                 <button aria-label="Закрыть карточку" type="button" class="popup__close-button popup__close-button_type_view"></button>
                 <img class="popup__image-view" src="#" alt="Описание изображения">
+                <figcaption class="popup__image-title"></figcaption>
             </div>
         </div>
 
