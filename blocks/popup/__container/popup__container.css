@@ -5,6 +5,7 @@
     flex-direction: column;
     border-radius: 2%;
     position: relative;
+    cursor: auto;
 }
 
 

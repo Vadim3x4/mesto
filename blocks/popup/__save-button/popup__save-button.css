@@ -1,8 +1,11 @@
 .popup__save-button{
-    margin: 48px 0 37px;
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    margin: 8px 0 37px;
     width: 358px;
     height: 50px;
-    background: url("../../../images/button_save.svg") center;
+    background-color: black;
     border: none;
     cursor: pointer;
 }
@@ -15,7 +18,6 @@
     .popup__save-button {
         width: 238px;
         height: 46px;
-        background: url("../../../images/button_save_small.svg") center;
         margin: 45px auto 25px;
     }
 }

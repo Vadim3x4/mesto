@@ -38,8 +38,11 @@
 @import url(../blocks/popup/_type/popup_type_image-view.css);
 @import url(../blocks/popup/__container/_type/popup__container_type_picture.css);
 @import url(../blocks/popup/__image-title/popup__image-title.css);
+@import url(../blocks/popup/__form-item-error/popup__form-item-error.css);
+@import url(../blocks/popup/__form-error-redline/_active/popup__form-error-redline_active.css);
+@import url(../blocks/popup/__form-error-input/_active/popup__form-error-input_active.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-
+@import url(../blocks/button/_inactive/button_inactive.css);

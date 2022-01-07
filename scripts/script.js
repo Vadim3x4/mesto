@@ -1,4 +1,5 @@
 const content = document.querySelector('.content');
+const page = document.querySelector('.page');
 const popupEdit = document.querySelector('.popup_type_edit-profile');
 const popupAdd = document.querySelector('.popup_type_add-post');
 const popupImage = document.querySelector('.popup_type_image-view');
@@ -159,6 +160,20 @@ function handleAddCard (evt) {
     closePopup(popupAdd);
 }
 
+function keyHandler(event) {
+    const esc = 'Escape';
+    if (event.key === esc) {
+        const openPopup = document.querySelector('.popup_opened');
+        closePopup(openPopup);
+    }
+}
+
+page.onclick = function(evt){
+    if(evt.target !== evt.currentTarget){
+        closePopup(evt.target)
+    }
+};
+page.addEventListener('keydown', keyHandler);
 profileEditButton.addEventListener('click', () => {
     nameInput.value = profileUsername.textContent;
     prophecyInput.value = profileProphecy.textContent;
@@ -176,8 +191,6 @@ popupCloseButtonAdd.addEventListener('click', ()=>{
 popupCloseButtonImageView.addEventListener('click', ()=>{
     closePopup(popupImage)
 });
-
-
 formElementEdit.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleAddCard);
 renderPosts()
