@@ -1,5 +1,6 @@
+import {initialCards} from './initialCards.js';
+
 const content = document.querySelector('.content');
-const page = document.querySelector('.page');
 const popupEdit = document.querySelector('.popup_type_edit-profile');
 const popupAdd = document.querySelector('.popup_type_add-post');
 const popupImage = document.querySelector('.popup_type_image-view');
@@ -20,33 +21,9 @@ const postContainer = content.querySelector('.posts');
 const postTemplate = document.querySelector('#post-template').content;
 const popupImageView = document.querySelector('.popup__image-view')
 const popupImageTitle = document.querySelector('.popup__image-title')
+const popupSaveButtonPost = document.getElementById('submit-newpost')
+const popupSaveButtonEditUser = document.getElementById('submit-edit_user')
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 /**
  * Функция удаления поста
@@ -87,9 +64,9 @@ function createPost(postLink, postTitle) {
     const likeButton = postElement.querySelector('.post__like')
     const deleteButton = postElement.querySelector('.post__delete')
     const imageView =  postElement.querySelector('.post__image')
-    postElement.querySelector('.post__image').src = postLink;
+    imageView.src = postLink;
     postElement.querySelector('.post__title').textContent = postTitle;
-    postElement.querySelector('.post__image').alt = postTitle;
+    imageView.alt = postTitle;
     likeButton.addEventListener('click', (evt) => {
         likePost(evt.target.classList)
     })
@@ -127,6 +104,7 @@ function renderPosts(){
  */
 function openPopup(popup){
     popup.classList.add('popup_opened');
+    setEventPopupListeners(popup);
 }
 
 /**
@@ -134,7 +112,8 @@ function openPopup(popup){
  *  * @param popup
  */
 function closePopup(popup) {
-    popup.classList.remove('popup_opened')
+    popup.classList.remove('popup_opened');
+    removeEventPopupListeners(popup);
 }
 
 /**
@@ -158,22 +137,49 @@ function handleAddCard (evt) {
     postLinkInput.value = '' ;
     postTitleInput.value = '' ;
     closePopup(popupAdd);
+    deactivateButton(popupSaveButtonPost)
 }
 
-function keyHandler(event) {
+/**
+ * Функция для закрывания поп-апа при нажатии Esc
+ * @param evt
+ */
+function keyHandler(evt) {
     const esc = 'Escape';
-    if (event.key === esc) {
+    if (evt.key === esc) {
         const openPopup = document.querySelector('.popup_opened');
         closePopup(openPopup);
     }
 }
 
-page.onclick = function(evt){
-    if(evt.target !== evt.currentTarget){
+/**
+ * Функция для закрывания поп-апа при нажатии оверлея
+ * @param evt
+ */
+function closePopupByClickingOverlay(evt){
+    if(evt.target === evt.currentTarget){
         closePopup(evt.target)
     }
-};
-page.addEventListener('keydown', keyHandler);
+}
+
+/**
+ * Функция для добавляения слушаетелей
+ * @param popup
+ */
+function setEventPopupListeners(popup){
+    document.addEventListener('keydown', keyHandler);
+    popup.addEventListener('click', closePopupByClickingOverlay);
+}
+
+/**
+ * Функция для удаления слушаетелей
+ * @param popup
+ */
+function removeEventPopupListeners(popup){
+    document.removeEventListener('keydown', keyHandler);
+    popup.addEventListener('click', closePopupByClickingOverlay);
+}
+
 profileEditButton.addEventListener('click', () => {
     nameInput.value = profileUsername.textContent;
     prophecyInput.value = profileProphecy.textContent;
