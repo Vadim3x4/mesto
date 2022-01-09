@@ -22,7 +22,6 @@ const postTemplate = document.querySelector('#post-template').content;
 const popupImageView = document.querySelector('.popup__image-view')
 const popupImageTitle = document.querySelector('.popup__image-title')
 const popupSaveButtonPost = document.getElementById('submit-newpost')
-const popupSaveButtonEditUser = document.getElementById('submit-edit_user')
 
 
 /**
@@ -137,7 +136,14 @@ function handleAddCard (evt) {
     postLinkInput.value = '' ;
     postTitleInput.value = '' ;
     closePopup(popupAdd);
-    deactivateButton(popupSaveButtonPost)
+    deactivateButton(popupSaveButtonPost, {
+        formSelector: '.popup__form',
+        inputSelector: '.popup__form-item',
+        submitButtonSelector: '.popup__save-button',
+        inactiveButtonClass: 'popup_save-button_inactive',
+        inputErrorClass: 'popup__form-error-redline_active',
+        errorClass: 'popup__form-error-input_active'
+    })
 }
 
 /**
