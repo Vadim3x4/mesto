@@ -1,4 +1,6 @@
 import {initialCards} from './initialCards.js';
+import {Post} from "./Card.js";
+import {FormValidator} from "./FormValidator.js";
 
 const content = document.querySelector('.content');
 const popupEdit = document.querySelector('.popup_type_edit-profile');
@@ -17,83 +19,20 @@ const postLinkInput = document.querySelector('.popup__form-item_type_link');
 const postTitleInput = document.querySelector('.popup__form-item_type_title');
 const profileUsername = content.querySelector('.profile__username');
 const profileProphecy = content.querySelector('.profile__prophecy');
-const postContainer = content.querySelector('.posts');
 const postTemplate = document.querySelector('#post-template').content;
 const popupImageView = document.querySelector('.popup__image-view')
 const popupImageTitle = document.querySelector('.popup__image-title')
 const popupSaveButtonPost = document.getElementById('submit-newpost')
+const postElement =  postTemplate.querySelector('.post')
 
-
-/**
- * Функция удаления поста
- * @param post
- */
-function deletePost(post){
-    post.remove()
-}
-
-/**
- * Функция лайка поста
- * @param post
- */
-function likePost(post){
-    post.toggle('post__like_active')
-}
-
-/**
- * Функция просмотра изображения, в отдельном поп-апе
- * @param postLink
- * @param postTitle
- */
-function imageViewPopup(postLink, postTitle){
-    popupImageView.src = postLink;
-    popupImageView.alt = postTitle;
-    popupImageTitle.textContent = postTitle;
-    openPopup(popupImage);
-}
-
-/**
- * Функция создания поста
- * @param postLink
- * @param postTitle
- * @returns {Node}
- */
-function createPost(postLink, postTitle) {
-    const postElement =  postTemplate.querySelector('.post').cloneNode(true);
-    const likeButton = postElement.querySelector('.post__like')
-    const deleteButton = postElement.querySelector('.post__delete')
-    const imageView =  postElement.querySelector('.post__image')
-    imageView.src = postLink;
-    postElement.querySelector('.post__title').textContent = postTitle;
-    imageView.alt = postTitle;
-    likeButton.addEventListener('click', (evt) => {
-        likePost(evt.target.classList)
-    })
-    deleteButton.addEventListener('click', () => {
-        deletePost(postElement)
-    })
-    imageView.addEventListener('click', () => {
-        imageViewPopup(postLink, postTitle)
-    });
-    return postElement
-}
-
-/**
- * Функция добавления поста
- * @param postLink
- * @param postTitle
- */
-function addPost(postLink, postTitle) {
-    const postElement =  createPost(postLink, postTitle)
-    postContainer.prepend(postElement);
-}
 
 /**
  * Функция рендера постов
  */
 function renderPosts(){
     initialCards.forEach(function (item) {
-    addPost(item.link, item.name)
+        let post = new Post(item.link, item.name, postElement);
+        post.getPost()
     });
 }
 
@@ -132,7 +71,8 @@ function handleProfileFormSubmit (evt) {
  */
 function handleAddCard (evt) {
     evt.preventDefault();
-    addPost(postLinkInput.value, postTitleInput.value);
+    let newPost = new Post(postLinkInput.value, postTitleInput.value, postElement)
+    newPost.getPost()
     postLinkInput.value = '' ;
     postTitleInput.value = '' ;
     closePopup(popupAdd);
@@ -186,6 +126,13 @@ function removeEventPopupListeners(popup){
     popup.addEventListener('click', closePopupByClickingOverlay);
 }
 
+export function imageViewPopup(postLink, postTitle){
+    popupImageView.src = postLink;
+    popupImageView.alt = postTitle;
+    popupImageTitle.textContent = postTitle;
+    openPopup(popupImage);
+}
+
 profileEditButton.addEventListener('click', () => {
     nameInput.value = profileUsername.textContent;
     prophecyInput.value = profileProphecy.textContent;
@@ -206,3 +153,50 @@ popupCloseButtonImageView.addEventListener('click', ()=>{
 formElementEdit.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleAddCard);
 renderPosts()
+
+
+/**
+ * Функция валидации
+ * @param config
+ */
+const enableValidation = (config) => {
+    let formList = Array.from(document.querySelectorAll(config.formSelector));
+    formList.forEach((formElement) => {
+        formElement.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+        });
+        let newForm = new FormValidator(config, formElement)
+        newForm.setEventListeners()
+    });
+};
+
+/**
+ * Функция деактивации кнопки подтверждения формы
+ * @param buttonElement
+ * @param config
+ */
+export function deactivateButton(buttonElement, config){
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.setAttribute("disabled", '');
+}
+
+
+/**
+ * Функция активации кнопки подтсверждения формы
+ * @param buttonElement
+ * @param config
+ */
+export function activateButton(buttonElement, config){
+    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.removeAttribute("disabled", '');
+}
+
+
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__form-item',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup_save-button_inactive',
+    inputErrorClass: 'popup__form-error-redline_active',
+    errorClass: 'popup__form-error-input_active'
+});
