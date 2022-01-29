@@ -1,12 +1,12 @@
 import {imageViewPopup} from "./index.js";
 
-const postContainer = document.querySelector('.posts');
+
 
 /**
  * Класс для создания карточки поста.
  * Доступный метод .getPost(post_image:url, post_title:str, template:html)
  */
-export class Post {
+export class Card {
     constructor(link, title, template) {
         this._link = link;
         this._title = title;
@@ -14,7 +14,7 @@ export class Post {
     }
 
     _createPost() {
-        let imageView = this._template.querySelector('.post__image')
+        const imageView = this._template.querySelector('.post__image')
         imageView.src = this._link;
         imageView.alt = this._title;
         this._template.querySelector('.post__title').textContent = this._title;
@@ -31,8 +31,8 @@ export class Post {
     }
 
     _postEventListener(imageView){
-        let likeButton = this._template.querySelector('.post__like')
-        let deleteButton = this._template.querySelector('.post__delete')
+        const likeButton = this._template.querySelector('.post__like')
+        const deleteButton = this._template.querySelector('.post__delete')
         likeButton.addEventListener('click', (evt) => {
             this._likePost(evt.target.classList)
         })
@@ -45,7 +45,7 @@ export class Post {
     }
 
     getPost(){
-        let postElement =  this._createPost(this._link, this._title)
-        postContainer.prepend(postElement);
+        const postElement =  this._createPost(this._link, this._title)
+        return postElement
     }
 }

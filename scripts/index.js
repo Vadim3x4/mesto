@@ -1,5 +1,5 @@
-import {initialCards} from './initialCards.js';
-import {Post} from "./Card.js";
+import {initialCards, config} from './initialCards.js';
+import {Card} from "./Card.js";
 import {FormValidator} from "./FormValidator.js";
 
 const content = document.querySelector('.content');
@@ -24,15 +24,21 @@ const popupImageView = document.querySelector('.popup__image-view')
 const popupImageTitle = document.querySelector('.popup__image-title')
 const popupSaveButtonPost = document.getElementById('submit-newpost')
 const postElement =  postTemplate.querySelector('.post')
-
+const postContainer = document.querySelector('.posts');
 
 /**
- * Функция рендера постов
+ * Функция создания карточки
  */
+function createCard(item) {
+    const card = new Card(item.link,item.name, postElement);
+    const cardElement = card.getPost()
+    return cardElement
+}
+
 function renderPosts(){
     initialCards.forEach(function (item) {
-        let post = new Post(item.link, item.name, postElement);
-        post.getPost()
+        const cardElement = createCard(item)
+        postContainer.prepend(cardElement);
     });
 }
 
@@ -71,26 +77,18 @@ function handleProfileFormSubmit (evt) {
  */
 function handleAddCard (evt) {
     evt.preventDefault();
-    let newPost = new Post(postLinkInput.value, postTitleInput.value, postElement)
-    newPost.getPost()
+    const newCard = createCard({link:postLinkInput.value, name:postTitleInput.value})
+    postContainer.prepend(newCard);
     postLinkInput.value = '' ;
     postTitleInput.value = '' ;
     closePopup(popupAdd);
-    deactivateButton(popupSaveButtonPost, {
-        formSelector: '.popup__form',
-        inputSelector: '.popup__form-item',
-        submitButtonSelector: '.popup__save-button',
-        inactiveButtonClass: 'popup_save-button_inactive',
-        inputErrorClass: 'popup__form-error-redline_active',
-        errorClass: 'popup__form-error-input_active'
-    })
 }
 
 /**
  * Функция для закрывания поп-апа при нажатии Esc
  * @param evt
  */
-function keyHandler(evt) {
+function closePopupByClickingEscape(evt) {
     const esc = 'Escape';
     if (evt.key === esc) {
         const openPopup = document.querySelector('.popup_opened');
@@ -113,7 +111,7 @@ function closePopupByClickingOverlay(evt){
  * @param popup
  */
 function setEventPopupListeners(popup){
-    document.addEventListener('keydown', keyHandler);
+    document.addEventListener('keydown', closePopupByClickingEscape);
     popup.addEventListener('click', closePopupByClickingOverlay);
 }
 
@@ -122,7 +120,7 @@ function setEventPopupListeners(popup){
  * @param popup
  */
 function removeEventPopupListeners(popup){
-    document.removeEventListener('keydown', keyHandler);
+    document.removeEventListener('keydown', closePopupByClickingEscape);
     popup.addEventListener('click', closePopupByClickingOverlay);
 }
 
@@ -133,23 +131,20 @@ export function imageViewPopup(postLink, postTitle){
     openPopup(popupImage);
 }
 
-/**
- * Функция деактивации кнопки подтверждения формы
- * @param buttonElement
- * @param config
- */
-function deactivateButton(buttonElement, config){
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.setAttribute("disabled", '');
-}
-
+const profileEditFormValidation = new FormValidator(config, formElementEdit);
+const postAddFormValidation = new FormValidator(config, formElementAdd);
+profileEditFormValidation.enableValidation()
+postAddFormValidation.enableValidation()
 
 profileEditButton.addEventListener('click', () => {
     nameInput.value = profileUsername.textContent;
     prophecyInput.value = profileProphecy.textContent;
+    profileEditFormValidation.resetValidation()
     openPopup(popupEdit)
 });
+
 addPostButton.addEventListener('click', () => {
+    postAddFormValidation.resetValidation()
     openPopup(popupAdd)
 });
 popupCloseButtonEdit.addEventListener('click', ()=>{
@@ -164,28 +159,3 @@ popupCloseButtonImageView.addEventListener('click', ()=>{
 formElementEdit.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleAddCard);
 renderPosts()
-
-
-/**
- * Функция валидации
- * @param config
- */
-const enableValidation = (config) => {
-    let formList = Array.from(document.querySelectorAll(config.formSelector));
-    formList.forEach((formElement) => {
-        formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-        });
-        let newForm = new FormValidator(config, formElement)
-        newForm.setEventListeners()
-    });
-};
-
-enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__form-item',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup_save-button_inactive',
-    inputErrorClass: 'popup__form-error-redline_active',
-    errorClass: 'popup__form-error-input_active'
-});
