@@ -4,6 +4,7 @@ import {deactivateButton, activateButton} from "./index.js";
  * Класс для валидации данных в формах.
  */
 export class FormValidator {
+
     constructor(config, elementForm) {
         this._config = config;
         this._elementForm = elementForm;
@@ -22,6 +23,27 @@ export class FormValidator {
     };
 
     /**
+     * Функция деактивации кнопки подтверждения формы
+     * @param buttonElement
+     * @param config
+     */
+    _deactivateButton(buttonElement, config){
+        buttonElement.classList.add(config.inactiveButtonClass);
+        buttonElement.setAttribute("disabled", '');
+    }
+
+
+    /**
+     * Функция активации кнопки подтверждения формы
+     * @param buttonElement
+     * @param config
+     */
+    _activateButton(buttonElement, config){
+        buttonElement.classList.remove(config.inactiveButtonClass);
+        buttonElement.removeAttribute("disabled", '');
+    }
+
+    /**
      * Метод определяющий состояние кнопки принятия формы
      * @param inputList
      * @param buttonElement
@@ -29,9 +51,9 @@ export class FormValidator {
      */
     _toggleButtonState(inputList, buttonElement, config){
         if (this._hasInvalidInput(inputList)) {
-            deactivateButton(buttonElement, config)
+            this._deactivateButton(buttonElement, config)
         } else {
-            activateButton(buttonElement, config);
+            this._activateButton(buttonElement, config);
         }
     };
 

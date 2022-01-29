@@ -175,20 +175,9 @@ const enableValidation = (config) => {
  * @param buttonElement
  * @param config
  */
-export function deactivateButton(buttonElement, config){
+function deactivateButton(buttonElement, config){
     buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.setAttribute("disabled", '');
-}
-
-
-/**
- * Функция активации кнопки подтсверждения формы
- * @param buttonElement
- * @param config
- */
-export function activateButton(buttonElement, config){
-    buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.removeAttribute("disabled", '');
 }
 
 
