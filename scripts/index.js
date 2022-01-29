@@ -133,6 +133,17 @@ export function imageViewPopup(postLink, postTitle){
     openPopup(popupImage);
 }
 
+/**
+ * Функция деактивации кнопки подтверждения формы
+ * @param buttonElement
+ * @param config
+ */
+function deactivateButton(buttonElement, config){
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.setAttribute("disabled", '');
+}
+
+
 profileEditButton.addEventListener('click', () => {
     nameInput.value = profileUsername.textContent;
     prophecyInput.value = profileProphecy.textContent;
@@ -169,17 +180,6 @@ const enableValidation = (config) => {
         newForm.setEventListeners()
     });
 };
-
-/**
- * Функция деактивации кнопки подтверждения формы
- * @param buttonElement
- * @param config
- */
-function deactivateButton(buttonElement, config){
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.setAttribute("disabled", '');
-}
-
 
 enableValidation({
     formSelector: '.popup__form',
