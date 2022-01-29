@@ -1,7 +1,5 @@
 import {imageViewPopup} from "./index.js";
 
-
-
 /**
  * Класс для создания карточки поста.
  * Доступный метод .getPost(post_image:url, post_title:str, template:html)
