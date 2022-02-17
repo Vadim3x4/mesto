@@ -1,7 +1,7 @@
 /**
  * Класс для валидации данных в формах.
  */
-export class FormValidator {
+export default class FormValidator {
 
     constructor(config, elementForm) {
         this._config = config;

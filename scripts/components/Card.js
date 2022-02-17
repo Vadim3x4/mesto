@@ -1,22 +1,22 @@
-import {imageViewPopup} from "./index.js";
 
 /**
  * Класс для создания карточки поста.
  * Доступный метод .getPost(post_image:url, post_title:str, template:html)
  */
-export class Card {
-    constructor(link, title, template) {
+export default class Card {
+    constructor(link, title, template, handleCardClick) {
         this._link = link;
         this._title = title;
         this._template = template.cloneNode(true);
+        this._handleCardClick = handleCardClick
     }
 
     _createPost() {
-        const imageView = this._template.querySelector('.post__image')
-        imageView.src = this._link;
-        imageView.alt = this._title;
+        this._imageView = this._template.querySelector('.post__image')
+        this._imageView.src = this._link;
+        this._imageView.alt = this._title;
         this._template.querySelector('.post__title').textContent = this._title;
-        this._postEventListener(imageView)
+        this._postEventListener()
         return this._template
     }
 
@@ -28,7 +28,7 @@ export class Card {
         post.remove()
     }
 
-    _postEventListener(imageView){
+    _postEventListener(){
         const likeButton = this._template.querySelector('.post__like')
         const deleteButton = this._template.querySelector('.post__delete')
         likeButton.addEventListener('click', (evt) => {
@@ -37,13 +37,12 @@ export class Card {
         deleteButton.addEventListener('click', () => {
             this._deletePost(this._template)
         })
-        imageView.addEventListener('click', () => {
-            imageViewPopup(this._link, this._title)
+        this._imageView.addEventListener('click', () => {
+            this._handleCardClick(this._link, this._title)
         });
     }
 
     getPost(){
-        const postElement =  this._createPost(this._link, this._title)
-        return postElement
+        return this._createPost(this._link, this._title)
     }
 }

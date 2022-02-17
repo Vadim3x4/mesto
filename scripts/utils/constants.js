@@ -1,3 +1,15 @@
+export const profileUsername = document.querySelector('.profile__username');
+export const profileProphecy = document.querySelector('.profile__prophecy');
+export const profileEditButton = document.querySelector('.profile__button-edit');
+export const addPostButton = document.querySelector('.profile__add-post-button');
+export const formElementEdit = document.querySelector('.popup__form_type_edit');
+export const formElementAdd = document.querySelector('.popup__form_type_add');
+export const nameInput = document.querySelector('.popup__form-item_type_name');
+export const prophecyInput = document.querySelector('.popup__form-item_type_prophecy');
+export const postTemplate = document.querySelector('#post-template').content;
+export const postElement =  postTemplate.querySelector('.post')
+export const postContainer = document.querySelector('.posts');
+
 export const initialCards = [
     {
         name: 'Архыз',
