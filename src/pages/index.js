@@ -1,10 +1,12 @@
-import UserInfo from "./components/UserInfo.js";
-import Section from "./components/Section.js";
-import Popup from "./components/Popup.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import FormValidator from "./components/FormValidator.js";
-import Card from "./components/Card.js"
+import "./index.css";
+
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js"
 
 import {
     initialCards,
@@ -19,7 +21,7 @@ import {
     postContainer,
     profileUsername,
     profileProphecy
-} from './utils/constants.js'
+} from '../utils/constants.js'
 
 
 /**
