@@ -1,5 +1,8 @@
 import {profileUsername, profileProphecy} from '../utils/constants.js'
 
+/**
+ * Класс отвечает за управление отображением информации о пользователе на странице
+ */
 export default class UserInfo {
     constructor(name, prophecy) {
         this._name = name;

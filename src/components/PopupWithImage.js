@@ -1,5 +1,8 @@
 import Popup from './Popup.js';
 
+/**
+ * Класс для создания поп-апа с изображением
+ */
 export default class PopupWithImage extends Popup {
     constructor(popupSelector) {
         super(popupSelector);

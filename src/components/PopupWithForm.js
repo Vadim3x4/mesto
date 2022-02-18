@@ -1,5 +1,8 @@
 import Popup from './Popup.js';
 
+/**
+ * Класс для создания поп-апа с формой
+ */
 export default class PopupWithForm extends Popup {
     constructor(popupSelector, handleFormSubmit) {
         super(popupSelector);

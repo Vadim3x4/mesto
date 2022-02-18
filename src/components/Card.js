@@ -1,7 +1,6 @@
-
 /**
  * Класс для создания карточки поста.
- * Доступный метод .getPost(post_image:url, post_title:str, template:html)
+ * Доступный метод .getPost(post_image:url, post_title:str, template:html, handleCardClick:func)
  */
 export default class Card {
     constructor(link, title, template, handleCardClick) {

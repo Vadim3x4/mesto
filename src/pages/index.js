@@ -32,21 +32,38 @@ function createCard(item) {
     return card.getPost()
 }
 
+/**
+ * Функция, которая отвечает за создание и отрисовку данных на странице.
+ * @param item
+ */
 function renderer(item) {
     section.addItem(createCard(item))
 }
 
+/**
+ * Колбэк сабмита формы изменения профиля
+ * @param data
+ */
 function handleProfileFormSubmit (data) {
     userInfo.setUserInfo(data)
     popupEditForm.close();
 }
 
+/**
+ * Колбэк сабмита формы добавления новой карточки
+ * @param data
+ */
 function handleAddCard (data) {
     const newCard = createCard({link:data[0], name:data[1]})
     postContainer.prepend(newCard);
     popupAddForm.close()
 }
 
+/**
+ * Колбэк для открытия поп-апа с изображением
+ * @param postLink
+ * @param postTitle
+ */
 function handleCardClick(postLink, postTitle){
     popupImage.open(postTitle, postLink)
 }
