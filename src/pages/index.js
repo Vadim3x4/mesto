@@ -19,8 +19,6 @@ import {
     prophecyInput,
     postElement,
     postContainer,
-    profileUsername,
-    profileProphecy
 } from '../utils/constants.js'
 
 
@@ -54,7 +52,7 @@ function handleProfileFormSubmit (data) {
  * @param data
  */
 function handleAddCard (data) {
-    const newCard = createCard({link:data[0], name:data[1]})
+    const newCard = createCard({link:data.link, name:data.title})
     postContainer.prepend(newCard);
     popupAddForm.close()
 }
@@ -74,8 +72,8 @@ profileEditFormValidation.enableValidation()
 postAddFormValidation.enableValidation()
 
 const userInfo = new UserInfo(
-    profileUsername,
-    profileProphecy
+    '.profile__username',
+    '.profile__prophecy'
 );
 const section = new Section(
     {'items': initialCards, 'renderer': renderer},
@@ -108,8 +106,8 @@ popupAddForm.setEventListeners()
 
 profileEditButton.addEventListener('click', () => {
     const profileInfo = userInfo.getUserInfo()
-    nameInput.value = profileInfo.name;
-    prophecyInput.value = profileInfo.prophecy;
+    nameInput.value = profileInfo.name.textContent;
+    prophecyInput.value = profileInfo.prophecy.textContent;
     profileEditFormValidation.resetValidation()
     popupEdit.open()
 });

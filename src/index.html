@@ -15,7 +15,6 @@
     <main class="content">
         <section class="profile">
             <div class="profile__info">
-
                 <img class="profile__avatar" src="<%=require('./images/profile_avatar.jpg')%>" alt="Аватар профиля">
                 <div class="profile__description">
                     <div class="profile__data">
@@ -28,39 +27,6 @@
             <button  aria-label="Добавить пост" type="button" class="profile__add-post-button"></button>
         </section>
         <section class="posts"></section>
-        <div class="popup popup_type_edit-profile">
-            <div class="popup__container">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <button aria-label="Закрыть редактирование профиля" type="button" class="popup__close-button popup__close-button_type_edit"></button>
-                <form class="popup__form popup__form_type_edit" name="popup_form_type_edit" novalidate>
-                    <input required type="text" class="popup__form-item popup__form-item_type_name" id="name-input" minlength="2" maxlength="40">
-                    <span class="popup__form-item-error name-input-error"></span>
-                    <input required type="text" class="popup__form-item popup__form-item_type_prophecy" id="prophecy-input" minlength="2" maxlength="200">
-                    <span class="popup__form-item-error prophecy-input-error"></span>
-                    <button aria-label="Принять редактирование профиля" type="submit" class="popup__save-button" id="submit-edit_user">Сохранить</button>
-                </form>
-            </div>
-        </div>
-        <div class="popup popup_type_add-post">
-            <div class="popup__container">
-                <h2 class="popup__title">Новое место</h2>
-                <button aria-label="Закрыть добавление карточки" type="button" class="popup__close-button popup__close-button_type_add"></button>
-                <form class="popup__form popup__form_type_add" name="popup_form_type_add">
-                    <input required type="text" placeholder="Название" class="popup__form-item popup__form-item_type_title" id="title-input" minlength="2" maxlength="30">
-                    <span class="popup__form-item-error title-input-error"></span>
-                    <input required type="url"  pattern="https?://.+" placeholder="Ссылка на картинку" class="popup__form-item popup__form-item_type_link" id="link-input">
-                    <span class="popup__form-item-error link-input-error"></span>
-                    <button aria-label="Сохранить карточку" type="submit" class="popup__save-button" id="submit-newpost">Создать</button>
-                </form>
-            </div>
-        </div>
-        <div class="popup popup_type_image-view">
-            <div class="popup__container popup__container_type_picture">
-                <button aria-label="Закрыть карточку" type="button" class="popup__close-button popup__close-button_type_view"></button>
-                <img class="popup__image-view" src="#" alt="Описание изображения">
-                <figcaption class="popup__image-title"></figcaption>
-            </div>
-        </div>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
@@ -75,6 +41,41 @@
             </div>
         </div>
     </template>
+
+    <div class="popup popup_type_edit-profile">
+        <div class="popup__container">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <button aria-label="Закрыть редактирование профиля" type="button" class="popup__close-button popup__close-button_type_edit"></button>
+            <form class="popup__form popup__form_type_edit" name="popup_form_type_edit" novalidate>
+                <input required type="text" class="popup__form-item popup__form-item_type_name" id="name-input" name="username" minlength="2" maxlength="40">
+                <span class="popup__form-item-error name-input-error"></span>
+                <input required type="text" class="popup__form-item popup__form-item_type_prophecy" id="prophecy-input" name="prophecy" minlength="2" maxlength="200">
+                <span class="popup__form-item-error prophecy-input-error"></span>
+                <button aria-label="Принять редактирование профиля" type="submit" class="popup__save-button" id="submit-edit_user">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_add-post">
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+            <button aria-label="Закрыть добавление карточки" type="button" class="popup__close-button popup__close-button_type_add"></button>
+            <form class="popup__form popup__form_type_add" name="popup_form_type_add">
+                <input required type="text" placeholder="Название" class="popup__form-item popup__form-item_type_title" id="title-input" name="title" minlength="2" maxlength="30">
+                <span class="popup__form-item-error title-input-error"></span>
+                <input required type="url"  pattern="https?://.+" placeholder="Ссылка на картинку" class="popup__form-item popup__form-item_type_link" id="link-input" name="link">
+                <span class="popup__form-item-error link-input-error"></span>
+                <button aria-label="Сохранить карточку" type="submit" class="popup__save-button" id="submit-newpost">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_image-view">
+        <div class="popup__container popup__container_type_picture">
+            <button aria-label="Закрыть карточку" type="button" class="popup__close-button popup__close-button_type_view"></button>
+            <img class="popup__image-view" src="#" alt="Описание изображения">
+            <figcaption class="popup__image-title"></figcaption>
+        </div>
+    </div>
+
 </body>
 
 </html>
