@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="keywords" content="html, css">
     <meta name="author" content="Vadim K">
-    <meta name="description" content="Проектная работа 8 спринта">
+    <meta name="description" content="Проектная работа 9 спринта">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Проект: Mesto</title>
 </head>
@@ -15,13 +15,16 @@
     <main class="content">
         <section class="profile">
             <div class="profile__info">
-                <img class="profile__avatar" src="<%=require('./images/profile_avatar.jpg')%>" alt="Аватар профиля">
+                <div class="profile__avatar-container">
+                    <img class="profile__avatar" src="#" alt="Аватар профиля">
+                    <button class="profile__avatar-btn"></button>
+                </div>
                 <div class="profile__description">
                     <div class="profile__data">
-                        <h1 class="profile__username">Жак-Ив Кусто</h1>
+                        <h1 class="profile__username"></h1>
                         <button aria-label="Редактирование профиля" type="button" class="profile__button-edit"></button>
                     </div>
-                    <p class="profile__prophecy">Исследователь океана</p>
+                    <p class="profile__prophecy"></p>
                 </div>
             </div>
             <button  aria-label="Добавить пост" type="button" class="profile__add-post-button"></button>
@@ -37,7 +40,10 @@
             <img class="post__image" src="#" alt="">
             <div class="post__description">
                 <h2 class="post__title"></h2>
-                <button aria-label="Нравится" type="button" class="post__like"></button>
+                <div class="post__like-container">
+                    <button aria-label="Нравится" type="button" class="post__like"></button>
+                    <p class="post__like-counter">5</p>
+                </div>
             </div>
         </div>
     </template>
@@ -75,7 +81,26 @@
             <figcaption class="popup__image-title"></figcaption>
         </div>
     </div>
-
+    <div class="popup popup_type_delete">
+        <div class="popup__container popup__content_type_delete">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button aria-label="Закрыть карточку" type="button" class="popup__close-button popup__close-button_type_view"></button>
+            <form class="popup__form popup__form_type_delete" name="popup_form_type_delete">
+                <button aria-label="Удалить карточку" type="submit" class="popup__save-button" id="submit-del-post">Да</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_edit-avatar">
+        <div class="popup__container">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <button aria-label="Закрыть добавление карточки" type="button" class="popup__close-button popup__close-button_type_add"></button>
+            <form class="popup__form popup__form_type_add" name="popup_form_type_add">
+                <input required type="url"  pattern="https?://.+" placeholder="Ссылка на аватар" class="popup__form-item popup__form-item_type_link" id="avatar-input" name="avatar">
+                <span class="popup__form-item-error link-input-error"></span>
+                <button aria-label="Сохранить карточку" type="submit" class="popup__save-button" id="submit-edit_avatar">Сохранить</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

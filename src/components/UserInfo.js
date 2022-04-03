@@ -2,9 +2,11 @@
  * Класс отвечает за управление отображением информации о пользователе на странице
  */
 export default class UserInfo {
-    constructor(nameSelector, prophecySelector) {
+    constructor(nameSelector, prophecySelector, avatar, userId) {
         this._nameElement = document.querySelector(nameSelector);
         this._prophecyElement = document.querySelector(prophecySelector);
+        this._avatarElement = document.querySelector(avatar);
+        this._userId = userId
     }
 
     getUserInfo() {
@@ -14,8 +16,18 @@ export default class UserInfo {
         };
     }
 
-    setUserInfo(data) {
-        this._nameElement.textContent = data.username;
-        this._prophecyElement.textContent = data.prophecy;
+    getUserId(){
+        return this._userId
+    }
+
+    setAvatar(userdata){
+        this._avatarElement.src = userdata.avatar;
+    }
+
+    setUserInfo(userdata) {
+        this._nameElement.textContent = userdata.name;
+        this._prophecyElement.textContent = userdata.about;
+        this._avatarElement.src = userdata.avatar;
+        this._userId = userdata._id
     }
 }

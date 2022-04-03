@@ -1,5 +1,3 @@
-export const profileUsername = document.querySelector('.profile__username');
-export const profileProphecy = document.querySelector('.profile__prophecy');
 export const profileEditButton = document.querySelector('.profile__button-edit');
 export const addPostButton = document.querySelector('.profile__add-post-button');
 export const formElementEdit = document.querySelector('.popup__form_type_edit');
@@ -9,33 +7,7 @@ export const prophecyInput = document.querySelector('.popup__form-item_type_prop
 export const postTemplate = document.querySelector('#post-template').content;
 export const postElement =  postTemplate.querySelector('.post')
 export const postContainer = document.querySelector('.posts');
-
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+export const avatarEditButton = document.querySelector('.profile__avatar-btn');
 
 export const config = {
     formSelector: '.popup__form',
