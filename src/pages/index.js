@@ -120,7 +120,7 @@ const section = new Section(
  * @type {PopupWithDeleteCard}
  */
 const popupDelPost = new PopupWithDeleteCard(
-    '.popup_type_delete'
+    '.popup_type_delete-post'
 )
 
 /**
