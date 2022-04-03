@@ -41,7 +41,7 @@
 .popup__form-error-redline_active{border-bottom-color:red}
 .popup__form-error-input_active{opacity:1}
 .popup_save-button_inactive{background:#fff;color:#b8b8b8;outline:1px solid;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
-.popup__form_type_delete{margin:38px 36px 0}
+.popup__form_type_delete{margin:38px 36px 0}@media screen and (max-width:620px){.popup__form_type_delete{margin:0 auto}}
 .footer{color:#545454;margin:66px auto 60px;max-width:880px}@media screen and (max-width:900px){.footer{max-width:581px}}@media screen and (max-width:620px){.footer{margin-bottom:36px;margin-top:48px;max-width:281px}}
 .footer__copyright{font-size:18px;line-height:22px;margin:0}@media screen and (max-width:620px){.footer__copyright{font-size:14px;line-height:17px}}
 
